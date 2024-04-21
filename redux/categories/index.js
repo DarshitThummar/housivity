@@ -24,7 +24,6 @@ export const addLikeAction = createAsyncThunk(
     let items = JSON.parse(localStorage.getItem("likeeItems")) || [];
     if (!items.includes(id)) {
       items.push(id);
-      console.log(items);
       localStorage.setItem("likeeItems", JSON.stringify(items));
     } else {
       console.log("ID already exists in the array.");
@@ -38,7 +37,6 @@ export const disLikeAction = createAsyncThunk(
     let items = JSON.parse(localStorage.getItem("likeeItems")) || [];
     items = items.filter((itemId) => itemId !== id);
     console.log("ID already exists in the array. Removing it.");
-    console.log(items);
     localStorage.setItem("likeeItems", JSON.stringify(items));
   }
 );

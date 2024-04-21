@@ -21,9 +21,9 @@ const HomePage = () => {
 
   const getCardData = async () => {
     const res = await fetch(
-      `https://jsonplaceholder.typicode.com/posts?_&limit=9&page=${page}`
+      `${process.env.NEXT_PUBLIC_API_URL}/property?page=${page}`
     ).then((res) => res.json());
-    setCardData((pre) => [...pre, ...res]);
+    setCardData((pre) => [...pre, ...res?.propertyList]);
   };
 
   const handelInfiniteScroll = () => {
@@ -32,11 +32,9 @@ const HomePage = () => {
         window.innerHeight + document.documentElement.scrollTop + 1 >=
         document.documentElement.scrollHeight
       ) {
-        console.log("fkj");
         setPage((pre) => pre + 1);
       }
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -62,8 +60,6 @@ const HomePage = () => {
     dispatch(disLikeAction(id));
   };
 
-  console.log(page);
-  console.log(cardData);
   return (
     <div className="container">
       <div>Home PG (Paying Guest)</div>
